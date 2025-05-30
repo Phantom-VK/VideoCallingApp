@@ -3,6 +3,7 @@ package com.developerspace.webrtcsample
 import org.webrtc.SdpObserver
 import org.webrtc.SessionDescription
 
+
 open class AppSdpObserver : SdpObserver {
     override fun onSetFailure(p0: String?) {
     }

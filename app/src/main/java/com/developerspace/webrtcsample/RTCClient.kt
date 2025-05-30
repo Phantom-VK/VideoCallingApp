@@ -22,7 +22,7 @@ class RTCClient(
 
     private var localAudioTrack : AudioTrack? = null
     private var localVideoTrack : VideoTrack? = null
-    val TAG = "RTCClient"
+    val tag = "RTCClient"
 
     var remoteSessionDescription : SessionDescription? = null
 
@@ -106,7 +106,7 @@ class RTCClient(
             override fun onCreateSuccess(desc: SessionDescription?) {
                 setLocalDescription(object : SdpObserver {
                     override fun onSetFailure(p0: String?) {
-                        Log.e(TAG, "onSetFailure: $p0")
+                        Log.e(tag, "onSetFailure: $p0")
                     }
 
                     override fun onSetSuccess() {
@@ -117,31 +117,31 @@ class RTCClient(
                         db.collection("calls").document(meetingID)
                                 .set(offer)
                                 .addOnSuccessListener {
-                                    Log.e(TAG, "DocumentSnapshot added")
+                                    Log.e(tag, "DocumentSnapshot added")
                                 }
                                 .addOnFailureListener { e ->
-                                    Log.e(TAG, "Error adding document", e)
+                                    Log.e(tag, "Error adding document", e)
                                 }
-                        Log.e(TAG, "onSetSuccess")
+                        Log.e(tag, "onSetSuccess")
                     }
 
                     override fun onCreateSuccess(p0: SessionDescription?) {
-                        Log.e(TAG, "onCreateSuccess: Description $p0")
+                        Log.e(tag, "onCreateSuccess: Description $p0")
                     }
 
                     override fun onCreateFailure(p0: String?) {
-                        Log.e(TAG, "onCreateFailure: $p0")
+                        Log.e(tag, "onCreateFailure: $p0")
                     }
                 }, desc)
                 sdpObserver.onCreateSuccess(desc)
             }
 
             override fun onSetFailure(p0: String?) {
-                Log.e(TAG, "onSetFailure: $p0")
+                Log.e(tag, "onSetFailure: $p0")
             }
 
             override fun onCreateFailure(p0: String?) {
-                Log.e(TAG, "onCreateFailure: $p0")
+                Log.e(tag, "onCreateFailure: $p0")
             }
         }, constraints)
     }
@@ -159,33 +159,33 @@ class RTCClient(
                 db.collection("calls").document(meetingID)
                         .set(answer)
                         .addOnSuccessListener {
-                            Log.e(TAG, "DocumentSnapshot added")
+                            Log.e(tag, "DocumentSnapshot added")
                         }
                         .addOnFailureListener { e ->
-                            Log.e(TAG, "Error adding document", e)
+                            Log.e(tag, "Error adding document", e)
                         }
                 setLocalDescription(object : SdpObserver {
                     override fun onSetFailure(p0: String?) {
-                        Log.e(TAG, "onSetFailure: $p0")
+                        Log.e(tag, "onSetFailure: $p0")
                     }
 
                     override fun onSetSuccess() {
-                        Log.e(TAG, "onSetSuccess")
+                        Log.e(tag, "onSetSuccess")
                     }
 
                     override fun onCreateSuccess(p0: SessionDescription?) {
-                        Log.e(TAG, "onCreateSuccess: Description $p0")
+                        Log.e(tag, "onCreateSuccess: Description $p0")
                     }
 
                     override fun onCreateFailure(p0: String?) {
-                        Log.e(TAG, "onCreateFailureLocal: $p0")
+                        Log.e(tag, "onCreateFailureLocal: $p0")
                     }
                 }, desc)
                 sdpObserver.onCreateSuccess(desc)
             }
 
             override fun onCreateFailure(p0: String?) {
-                Log.e(TAG, "onCreateFailureRemote: $p0")
+                Log.e(tag, "onCreateFailureRemote: $p0")
             }
         }, constraints)
     }
@@ -198,19 +198,19 @@ class RTCClient(
         remoteSessionDescription = sessionDescription
         peerConnection?.setRemoteDescription(object : SdpObserver {
             override fun onSetFailure(p0: String?) {
-                Log.e(TAG, "onSetFailure: $p0")
+                Log.e(tag, "onSetFailure: $p0")
             }
 
             override fun onSetSuccess() {
-                Log.e(TAG, "onSetSuccessRemoteSession")
+                Log.e(tag, "onSetSuccessRemoteSession")
             }
 
             override fun onCreateSuccess(p0: SessionDescription?) {
-                Log.e(TAG, "onCreateSuccessRemoteSession: Description $p0")
+                Log.e(tag, "onCreateSuccessRemoteSession: Description $p0")
             }
 
             override fun onCreateFailure(p0: String?) {
-                Log.e(TAG, "onCreateFailure")
+                Log.e(tag, "onCreateFailure")
             }
         }, sessionDescription)
 
@@ -241,10 +241,10 @@ class RTCClient(
         db.collection("calls").document(meetingID)
                 .set(endCall)
                 .addOnSuccessListener {
-                    Log.e(TAG, "DocumentSnapshot added")
+                    Log.e(tag, "DocumentSnapshot added")
                 }
                 .addOnFailureListener { e ->
-                    Log.e(TAG, "Error adding document", e)
+                    Log.e(tag, "Error adding document", e)
                 }
 
         peerConnection?.close()
