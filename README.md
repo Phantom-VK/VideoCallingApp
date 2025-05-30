@@ -25,11 +25,14 @@ This is cloned from and latest updated version of
 
 ## Setup :hammer:
 
-- You can clone the project from the WebRTC Kotlin Sample repository.
+- You can clone the original project from the WebRTC Kotlin Sample repository.
 
 ```// Clone original repository
   git clone https://github.com/developerspace-samples/WebRTC-Kotlin-Sample.git
 ```
+
+- You can clone the current updated project here
+
 ```// Clone this repository
   git clone https://github.com/Phantom-VK/VideoCallingApp
 ```
