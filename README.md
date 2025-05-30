@@ -5,6 +5,11 @@
 ![GitHub stars](https://img.shields.io/github/stars/developerspace-samples/WebRTC-Kotlin-Sample?style=social)
 
 An android application which uses WebRTC and Firestore as signaling server to support real time media communication.
+This is cloned from and latest updated version of
+```
+ https://github.com/developerspace-samples/WebRTC-Kotlin-Sample.git
+```
+
 
 [![WebRTC Sample](https://img.youtube.com/vi/MlRN8dV9lOs/0.jpg)](https://youtu.be/MlRN8dV9lOs)
 
@@ -22,8 +27,11 @@ An android application which uses WebRTC and Firestore as signaling server to su
 
 - You can clone the project from the WebRTC Kotlin Sample repository.
 
-```// Clone this repository
+```// Clone original repository
   git clone https://github.com/developerspace-samples/WebRTC-Kotlin-Sample.git
+```
+```// Clone this repository
+  git clone https://github.com/Phantom-VK/VideoCallingApp
 ```
 
 - Please make sure to create a Firebase Project and set-up with this app. You need to add `google-service.json` file of your Firebase project in your `app` folder.
