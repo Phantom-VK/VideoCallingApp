@@ -3,7 +3,7 @@ package com.developerspace.webrtcsample
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dwarsh.webrtcsample.databinding.ActivityStartBinding
+import com.developerspace.webrtcsample.databinding.ActivityStartBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Constants.isIntiatedNow = true
+        Constants.isInitiatedNow = true
         Constants.isCallEnded = true
 
         binding.startMeeting.setOnClickListener {

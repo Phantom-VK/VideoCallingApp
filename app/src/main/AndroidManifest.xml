@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Queries (for Android 11+ implicit intents) -->
     <queries>
-        <package android:name="com.google.android.gms"/>
+        <package android:name="com.google.android.gms" />
     </queries>
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- Features -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -21,17 +30,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WebRTCSample">
-        <activity android:name="com.developerspace.webrtcsample.MainActivity"
+
+        <!-- Google Play Services metadata -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Firebase initialization (optional, but best practice) -->
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="true" />
+
+        <!-- Main Activity -->
+        <activity
+            android:name="com.developerspace.webrtcsample.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.developerspace.webrtcsample.RTCActivity"
-            android:theme="@style/Theme.FullScreen"/>
+
+        <!-- RTC Call Activity -->
+        <activity
+            android:name="com.developerspace.webrtcsample.RTCActivity"
+            android:theme="@style/Theme.FullScreen" />
+
     </application>
 
 </manifest>

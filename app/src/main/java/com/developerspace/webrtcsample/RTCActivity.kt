@@ -11,8 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
-import com.dwarsh.webrtcsample.R
-import com.dwarsh.webrtcsample.databinding.ActivityMainBinding
+import com.developerspace.webrtcsample.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.webrtc.DataChannel
 import org.webrtc.IceCandidate
@@ -184,14 +183,14 @@ class RTCActivity : AppCompatActivity() {
 
         override fun onOfferReceived(description: SessionDescription) {
             rtcClient.onRemoteSessionReceived(description)
-            Constants.isIntiatedNow = false
+            Constants.isInitiatedNow = false
             rtcClient.answer(sdpObserver, meetingID)
             binding.remoteViewLoading.isGone = true
         }
 
         override fun onAnswerReceived(description: SessionDescription) {
             rtcClient.onRemoteSessionReceived(description)
-            Constants.isIntiatedNow = false
+            Constants.isInitiatedNow = false
             binding.remoteViewLoading.isGone = true
         }
 

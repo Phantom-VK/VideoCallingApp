@@ -5,19 +5,26 @@ plugins {
 }
 
 android {
-    namespace 'com.dwarsh.webrtcsample'
+    namespace 'com.developerspace.webrtcsample'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.dwarsh.webrtcsample"
+        applicationId "com.developerspace.webrtcsample"
         minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Add this to help with debugging
+        buildConfigField "boolean", "DEBUG_MODE", "true"
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -26,11 +33,13 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -50,6 +59,9 @@ android {
 }
 
 dependencies {
+    // Core library desugaring (Add this first)
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.21"
     implementation 'androidx.core:core-ktx:1.16.0'
@@ -62,28 +74,29 @@ dependencies {
     // Preferences
     implementation "androidx.preference:preference-ktx:1.2.1"
 
-    // Firebase
+    // Firebase BOM - This manages all Firebase library versions
     implementation platform('com.google.firebase:firebase-bom:33.14.0')
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
 
+    // Temporarily comment out Google Play services
+     implementation 'com.google.android.gms:play-services-base:18.7.0'
 
-
-    //New dependecny for web rtc
+    // WebRTC
     implementation 'com.dafruits:webrtc:123.0.0'
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2" // For Firebase coroutines support
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2"
 
-    // Ktor (updated to stable version)
-    implementation "io.ktor:ktor-client-core:3.1.3"
-    implementation "io.ktor:ktor-client-android:3.1.3"
-    implementation "io.ktor:ktor-client-websockets:3.1.3"
-    implementation "io.ktor:ktor-client-cio:3.1.3"
-    implementation "io.ktor:ktor-client-content-negotiation:2.3.7"
-    implementation "io.ktor:ktor-serialization-gson:2.3.7"
-    implementation 'com.google.firebase:firebase-database:21.0.0'
-    implementation 'com.google.firebase:firebase-firestore:25.1.4'
+    // Ktor - Use consistent versions
+    def ktor_version = "3.1.3"
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android:$ktor_version"
+    implementation "io.ktor:ktor-client-websockets:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-serialization-gson:$ktor_version"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

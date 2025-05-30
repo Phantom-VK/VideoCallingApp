@@ -11,7 +11,6 @@ import android.media.AudioManager.OnAudioFocusChangeListener
 import android.os.Build
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.dwarsh.webrtcsample.R
 import org.webrtc.ThreadUtils
 import java.util.Collections
 
